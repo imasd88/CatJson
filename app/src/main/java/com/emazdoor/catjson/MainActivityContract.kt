@@ -9,8 +9,9 @@ interface MainActivityContract {
 
 
     interface MainActivityView {
-        fun showAllMaleOwnerCats(): ArrayList<Details>
-        fun showAllFemaleOwnerCats(): ArrayList<Details>
+        fun resultsReady()
+        fun showAllMaleOwnerCats(list: ArrayList<String>)
+        fun showAllFemaleOwnerCats(list: ArrayList<String>)
     }
 
     interface MainActivityPresenter {
