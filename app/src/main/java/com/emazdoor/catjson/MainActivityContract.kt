@@ -1,7 +1,5 @@
 package com.emazdoor.catjson
 
-import com.emazdoor.catjson.data.Details
-
 /**
  * Created by Ahmed on 2019-06-01.
  */
@@ -15,9 +13,9 @@ interface MainActivityContract {
     }
 
     interface MainActivityPresenter {
-        fun fetchJSON()
-        fun getAllMaleOwnerCats()
-        fun getAllFemaleOwnerCats()
+        fun fetchJSON(url: String)
+        fun getAllMaleOwnerCats(): ArrayList<String>
+        fun getAllFemaleOwnerCats() : ArrayList<String>
     }
 
 }

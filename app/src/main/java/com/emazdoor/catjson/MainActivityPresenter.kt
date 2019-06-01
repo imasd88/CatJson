@@ -1,7 +1,7 @@
 package com.emazdoor.catjson
 
 import com.emazdoor.catjson.api.ApiClient
-import com.emazdoor.catjson.data.Details
+import com.emazdoor.catjson.data.PetOwnerShip
 import com.google.gson.Gson
 import com.loopj.android.http.JsonHttpResponseHandler
 import cz.msebera.android.httpclient.Header
@@ -13,17 +13,17 @@ import org.json.JSONArray
 class MainActivityPresenter(private val mainActivity: MainActivity) : MainActivityContract.MainActivityPresenter {
 
     val gson = Gson()
-    private val list = ArrayList<Details>()
+    private val list = ArrayList<PetOwnerShip>()
 
-    override fun fetchJSON() {
-        ApiClient.get("http://agl-developer-test.azurewebsites.net/people.json", object : JsonHttpResponseHandler() {
+    override fun fetchJSON(url: String) {
+        ApiClient.get(url, object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, response: JSONArray) {
                 super.onSuccess(statusCode, headers, response)
                 for (i in 0 until response.length()) {
                     val localResponse = response.getJSONObject(i)
                     if (hasPets(localResponse.getString("pets"))) {
-                        val details = gson.fromJson(localResponse.toString(), Details::class.java)
-                        list.add(details)
+                        val petOwnerShip = gson.fromJson(localResponse.toString(), PetOwnerShip::class.java)
+                        list.add(petOwnerShip)
                     }
                 }
                 mainActivity.resultsReady()
@@ -31,7 +31,7 @@ class MainActivityPresenter(private val mainActivity: MainActivity) : MainActivi
         })
     }
 
-    override fun getAllMaleOwnerCats() {
+    override fun getAllMaleOwnerCats(): ArrayList<String> {
         val subList = ArrayList<String>()
         for (i in 0 until list.size) {
             if (list[i].gender.equals("Male")) {
@@ -41,9 +41,10 @@ class MainActivityPresenter(private val mainActivity: MainActivity) : MainActivi
             }
         }
         mainActivity.showAllMaleOwnerCats(makeListAlphabetical(subList))
+        return subList
     }
 
-    override fun getAllFemaleOwnerCats() {
+    override fun getAllFemaleOwnerCats(): ArrayList<String> {
         val subList = ArrayList<String>()
         for (i in 0 until list.size) {
             if (list[i].gender.equals("Female")) {
@@ -53,6 +54,7 @@ class MainActivityPresenter(private val mainActivity: MainActivity) : MainActivi
             }
         }
         mainActivity.showAllFemaleOwnerCats(makeListAlphabetical(subList))
+        return subList
     }
 
     private fun hasPets(value: String): Boolean {

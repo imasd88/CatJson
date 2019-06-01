@@ -1,14 +1,13 @@
 package com.emazdoor.catjson
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.emazdoor.catjson.data.Details
+import com.emazdoor.catjson.data.PetOwnerShip
 
 
 class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityView {
 
-    lateinit var details: Details
+    lateinit var PetOwnerShip: PetOwnerShip
     lateinit var mainActivityPresenter: MainActivityPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityView 
 
         mainActivityPresenter = MainActivityPresenter(this)
 
-        mainActivityPresenter.fetchJSON()
+        mainActivityPresenter.fetchJSON("http://agl-developer-test.azurewebsites.net/people.json")
     }
 
     override fun resultsReady() {
@@ -26,14 +25,8 @@ class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityView 
     }
 
     override fun showAllMaleOwnerCats(list: ArrayList<String>) {
-        for(l in list){
-            Log.e("list", "$l")
-        }
     }
 
     override fun showAllFemaleOwnerCats(list: ArrayList<String>) {
-        for(f in list){
-            Log.e("list", "female $f")
-        }
     }
 }
