@@ -1,38 +1,28 @@
 package com.emazdoor.catjson
 
-import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.emazdoor.catjson.api.ApiClient
-import com.loopj.android.http.JsonHttpResponseHandler
-import cz.msebera.android.httpclient.Header
-import org.json.JSONArray
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.MalformedURLException
-import java.net.URL
+import com.emazdoor.catjson.data.Details
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainActivityContract.MainActivityView {
+
+    lateinit var details: Details
+    private val mainActivityPresenter = MainActivityPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mainActivityPresenter.fetchJSON()
+    }
 
-        ApiClient.get("http://agl-developer-test.azurewebsites.net/people.json", object: JsonHttpResponseHandler(){
-            override fun onSuccess(statusCode: Int, headers: Array<out Header>?, response: JSONArray?) {
-                super.onSuccess(statusCode, headers, response)
+    override fun showAllMaleOwnerCats(): ArrayList<Details> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-                Log.d("ASD", "${response?.optJSONObject(0)?.getJSONArray("pets")}")
-
-                var pet = response?.optJSONObject(0)?.getJSONArray("pets")
-            }
-        })
-
+    override fun showAllFemaleOwnerCats(): ArrayList<Details> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }
