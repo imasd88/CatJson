@@ -17,9 +17,9 @@ class MainActivityPresenterTest {
 
     @Test
     fun getAllMaleOwnerCats() {
-        fetchJSON()
-        val list = mainActivityPresenter.getAllMaleOwnerCats()
-        Assert.assertEquals(list[0].toString(), "Garfield")
+        val list = mainActivityPresenter.fetchJSON("http://agl-developer-test.azurewebsites.net/people.json")
+        val sublist = mainActivityPresenter.getAllMaleOwnerCats(list)
+        Assert.assertEquals(sublist[0].toString(), "Garfield")
     }
 
     @Test

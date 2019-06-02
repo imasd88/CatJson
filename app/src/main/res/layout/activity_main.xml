@@ -1,24 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+    <RelativeLayout
+        android:id="@+id/maleRV"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="100px"
+        android:layout_marginLeft="100px">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <TextView
+            android:id="@+id/maleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+            android:textSize="24sp" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <TextView
+            android:id="@+id/maleTVItem1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/maleTV"
+            android:layout_marginBottom="-29dp"
+            android:text="TextView" />
 
+        <TextView
+            android:id="@+id/maleTVItem2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/maleTVItem1"
+            android:layout_marginBottom="-29dp"
+            android:text="TextView" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/maleTVItem3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/maleTVItem2"
+            android:layout_marginBottom="-29dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/maleTVItem4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/maleTVItem3"
+            android:layout_marginBottom="-29dp"
+            android:text="TextView" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/femaleRV"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="400px"
+        android:layout_marginLeft="400px">
+
+        <TextView
+            android:id="@+id/femaleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/femaleTVItem1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/femaleTV"
+            android:layout_marginBottom="-29dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/femaleTVItem2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/femaleTVItem1"
+            android:layout_marginBottom="-29dp"
+            android:text="TextView" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -13,9 +13,9 @@ import org.json.JSONArray
 class MainActivityPresenter(private val mainActivity: MainActivity) : MainActivityContract.MainActivityPresenter {
 
     val gson = Gson()
-    private val list = ArrayList<PetOwnerShip>()
 
-    override fun fetchJSON(url: String) {
+    override fun fetchJSON(url: String): ArrayList<PetOwnerShip> {
+        val list = ArrayList<PetOwnerShip>()
         ApiClient.get(url, object : JsonHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, response: JSONArray) {
                 super.onSuccess(statusCode, headers, response)
@@ -26,17 +26,18 @@ class MainActivityPresenter(private val mainActivity: MainActivity) : MainActivi
                         list.add(petOwnerShip)
                     }
                 }
-                mainActivity.resultsReady()
+                mainActivity.resultsReady(list)
             }
         })
+        return list
     }
 
-    override fun getAllMaleOwnerCats(): ArrayList<String> {
+    override fun getAllMaleOwnerCats(petList: ArrayList<PetOwnerShip>): ArrayList<String> {
         val subList = ArrayList<String>()
-        for (i in 0 until list.size) {
-            if (list[i].gender.equals("Male")) {
-                for (j in 0 until list[i].pets.size) if (list[i].pets[j].type.equals("Cat")) subList.add(
-                    list[i].pets[j].name
+        for (i in 0 until petList.size) {
+            if (petList[i].gender.equals("Male")) {
+                for (j in 0 until petList[i].pets.size) if (petList[i].pets[j].type.equals("Cat")) subList.add(
+                    petList[i].pets[j].name
                 )
             }
         }
@@ -44,12 +45,12 @@ class MainActivityPresenter(private val mainActivity: MainActivity) : MainActivi
         return subList
     }
 
-    override fun getAllFemaleOwnerCats(): ArrayList<String> {
+    override fun getAllFemaleOwnerCats(petList: ArrayList<PetOwnerShip>): ArrayList<String> {
         val subList = ArrayList<String>()
-        for (i in 0 until list.size) {
-            if (list[i].gender.equals("Female")) {
-                for (j in 0 until list[i].pets.size) if (list[i].pets[j].type.equals("Cat")) subList.add(
-                    list[i].pets[j].name
+        for (i in 0 until petList.size) {
+            if (petList[i].gender.equals("Female")) {
+                for (j in 0 until petList[i].pets.size) if (petList[i].pets[j].type.equals("Cat")) subList.add(
+                    petList[i].pets[j].name
                 )
             }
         }
