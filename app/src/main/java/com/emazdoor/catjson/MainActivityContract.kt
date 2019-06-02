@@ -16,8 +16,8 @@ interface MainActivityContract {
 
     interface MainActivityPresenter {
         fun fetchJSON(url: String): ArrayList<PetOwnerShip>
-        fun getAllMaleOwnerCats(list: ArrayList<PetOwnerShip>): ArrayList<String>
-        fun getAllFemaleOwnerCats(list: ArrayList<PetOwnerShip>): ArrayList<String>
+        fun getAllMaleOwnerCats(petList: ArrayList<PetOwnerShip>): ArrayList<String>
+        fun getAllFemaleOwnerCats(petList: ArrayList<PetOwnerShip>): ArrayList<String>
     }
 
 }
